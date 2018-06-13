@@ -1,0 +1,117 @@
+# Main theme
+
+#=========
+#=Windows=
+#=========
+# Set font
+font pango:Clear Sans 9
+
+# Colors
+set $border   #151516
+set $bdr-actv #151516
+# class                 border  bg      text    indicator child_border
+client.focused          #a66363 #285577 #ffffff $bdr-actv $bdr-actv
+client.focused_inactive #333333 #5f676a #ffffff $border   $border 
+client.unfocused        #333333 #222222 #888888 $border   $border 
+client.urgent           #2f343a #900000 #ffffff #db539b   #db539b
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff
+
+#=========
+#=Borders=
+#=========
+for_window [class="^.*"] border pixel 4
+#for_window [class="Firefox"] border pixel 3
+
+#=========
+#=Compton=
+#=========
+# Start Compton on i3 restart
+exec_always compton -f -D 5 -c -o .60 -r 10 -l -15 -t -15 -z --inactive-dim 0.1
+
+#===========
+#=Wallpaper=
+#===========
+# Set wallpaper
+#exec_always feh --bg-fill ~/img-archive/wallpapers/1498806130544.jpg
+exec_always feh --bg-fill ~/img-archive/wallpapers/solid23232a.png
+
+# Reload the wallpaper from feh
+exec sh ~/.fehbg &
+
+#=====================
+#=Workspace Variables=
+#=====================
+# workspace variables
+set $ws1 1:α
+set $ws2 2:β
+set $ws3 3:γ
+set $ws4 4:δ
+set $ws5 5:ε
+set $ws6 6:ζ
+set $ws7 7:η
+set $ws8 8:θ
+set $ws9 9:ι
+set $ws10 10:κ
+#set $ws11 11:λ
+set $ws11 11:
+#set $ws12 12:
+set $ws12 12:
+
+# Go to https://fontawesome.com/icons?d=gallery for cool icons
+
+#========
+#=i3gaps=
+#========
+
+#smart_borders no_gaps
+#gaps outer 0
+#gaps inner 17
+gaps outer 56
+gaps inner 8
+
+bindsym $mod+i gaps inner all set 8; gaps outer all set 0
+bindsym $mod+o gaps inner all set 8; gaps outer all set 52
+
+#=======
+#=i3bar=
+#=======
+# Variables
+
+#set $bg-color #0c0c1837
+set $bg-color #0c0c1800
+
+#set $active-text #ccc1c9
+set $active-text #dfdade
+
+#set $inactive-text #968793
+set $inactive-text #b9afb7
+
+bar {
+        status_command i3blocks # -c ~/.config/i3/i3blocks.conf
+        i3bar_command i3bar -t
+        #tray_output none
+        strip_workspace_numbers yes
+        position top
+        height 25
+        # font pango:lucy tewii 8
+        # font pango:roboto mono medium 9
+        # font pango: Hasklig medium 10
+        font pango: Fira Code bold 11
+        #separator_symbol " ◉ "
+        separator_symbol " | "
+        colors {
+                background $bg-color
+                statusline $inactive-text
+                # separator #997e8a
+                separator #7c6771
+
+                #                  border    bg        text
+                focused_workspace  $bg-color $bg-color $active-text
+                active_workspace   $bg-color $bg-color #ffffff
+                inactive_workspace $bg-color $bg-color $inactive-text
+                urgent_workspace   #db539b   #db539b   #ffffff
+                binding_mode       #900000   #900000   #ffffff
+            }
+}

@@ -1,0 +1,188 @@
+#===================
+#===MAIN CONFIGS===
+#===================
+
+#=========
+#=Startup=
+#=========
+# Load .Xresources
+exec xrdb -load ~/.Xresources
+
+# Set key repeat delay
+exec_always xset r rate 300 50
+
+# Set unclutter cursor idle timeout (cursor disappears after 5 secs)
+exec_always unclutter -b --timeout 5 --exclude-root --jitter 10
+
+# Set keyboard layout to Finnish on startup
+exec setxkbmap fi
+
+# Set mode-laptop on startup
+exec --no-startup-id i3-msg '/home/kiri/scripts/mode-laptop'
+
+# Start unclutter to hide mouse pointer after 5 seconds of inactivity
+exec_always unclutter -idle 5 -root
+
+# Run wacom-configs on startup (see keybinds for shortcut)
+exec ~/scripts/wacom-configs
+
+# Start desktop notification daemon
+exec_always dunst
+
+# Start discord and slack
+#assign [class="discord"] 11:λ
+#exec --no-startup-id i3-msg 'workspace 11:λ; exec discord'
+
+# Start volume notification daemon
+exec volnoti
+
+# Start dropbox
+exec --no-startup-id dropbox start
+
+# Start udiskie (disk mounting/unmounting helper and notification daemon)
+exec udiskie
+
+# Assign Firefox to workspace 11
+assign [class="Firefox"] $ws11
+
+# Assign Discord to workspace 12
+assign [class="discord"] $ws12
+
+# Start Discord
+#exec --no-startup-id discord
+
+#==========
+#=Keybinds=
+#==========
+# Raise volume
+bindsym $mod+equal exec pamixer -i 2; exec volnoti-show $(pamixer --get-volume) 
+# Lower volume
+bindsym $mod+minus exec pamixer -d 2; exec volnoti-show $(pamixer --get-volume)
+# Mute
+bindsym $mod+bracketleft exec pamixer -m; exec volnoti-show -m
+# Unmute
+bindsym $mod+bracketright exec pamixer -u; exec volnoti-show $(pamixer --get-volume)
+
+# Start Rofi
+# Settings:
+# 	-eh 		:: row height (in chars)
+# 	-lines 		:: number of lines
+# 	-width 		:: window width
+bindsym $mod+d exec rofi -show run    -eh 1 -lines 8 -width 20 -padding 30 -opacity "90" -font "Fira Code Medium 12" -hide-scrollbar
+bindsym $mod+c exec rofi -show window -eh 1 -lines 8 -width 20 -padding 30 -opacity "90" -font "Fira Code Medium 12" -hide-scrollbar
+
+# set the win key as the main mod key
+set $mod Mod4
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+# bindsym $mod+Return exec i3-sensible-terminal
+# bindsym $mod+Return exec termite
+#bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec kitty
+
+# kill focused window
+bindsym $mod+q kill
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# split toggle
+bindsym $mod+v split toggle
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# toggle tiling / floating
+#bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+#bindsym $mod+space focus mode_toggle
+bindsym $mod+space focus mode_toggle
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3 and end session?' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" { # These bindings trigger as soon as you enter the resize mode
+
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Lock screen with custom lock script using i3lock
+#bindsym $mod+m exec ~/scripts/lock
+bindsym $mod+m exec betterlockscreen -l
+
+# Screenshot shortcut
+bindsym $mod+n exec gscreenshot
+bindsym $mod+z exec TIMEDATE=$(date +"%F-%T") && scrot '%F-%T.png' -e 'mv $f ~/screenshots/' && notify-send "Screenshot saved as ~/screenshots/$TIMEDATE.png"
+
+#========================
+#=System Config Keybinds=
+#========================
+# Wacom tablet configuration
+bindsym $mod+b exec ~/scripts/wacom-configs
+
+# Laptop mode
+bindsym $mod+Shift+f exec ~/scripts/mode-laptop && ~/scripts/wacom-configs
+
+# Desktop mode
+bindsym $mod+Shift+d exec ~/scripts/mode-desktop && ~/scripts/wacom-configs
+
+#==================
+#=Workspace Config=
+#==================
+# switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+bindsym $mod+s workspace number $ws11
+bindsym $mod+a workspace number $ws12
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+bindsym $mod+Shift+s move container to workspace number $ws11
+bindsym $mod+Shift+a move container to workspace number $ws12
