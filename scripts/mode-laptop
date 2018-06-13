@@ -1,0 +1,14 @@
+#!/bin/bash
+# Laptop mode - dictonnect the cable and use this script to change to laptop mode
+
+# map output to eDP1.
+xrandr --output eDP-1 --auto
+
+# turn off external monitor
+xrandr --output HDMI-1 --off
+
+# map wacom stylus output to eDP1
+xsetwacom --set "Wacom Intuos Pro M Pen stylus" MapToOutput "eDP1"
+
+# set the keyboard to Finnish layout
+setxkbmap fi

@@ -1,0 +1,40 @@
+#!/bin/bash
+
+
+### Define variables. The order here is the order of the buttons from top to bottom in left-handed mode.
+### Keep in mind that the '[' and ']' keys only work with the US keyboard layout and not the Finnish keyboard layout, as alt-gradient is required to to type both keys.
+
+# Top 4 buttons
+button13='key +space'
+button12='key +ctrl z -ctrl'
+button11='key +ctrl +shift z -ctrl -shift'
+button10=''
+
+# Middle button (scroll wheel)
+button1=''
+
+button9=''
+button8='key ]'
+button3='key ['
+button2=''
+
+### xsetwacom definitions
+
+xsetwacom --set "Wacom Intuos Pro M Pen stylus" rotate half
+#xsetwacom --set "Wacom Intuos Pro M Pen stylus" Area 0 0 44704 25146 #for right-handed
+xsetwacom --set "Wacom Intuos Pro M Pen stylus" Area 0 2794 44704 27849 #for left-handed
+xsetwacom --set "Wacom Intuos Pro M Finger touch" rotate half
+xsetwacom --set "Wacom Intuos Pro M Finger touch" Touch off #turn off touch
+
+# Button definitions
+xsetwacom --set "Wacom Intuos Pro M Pad pad" Button 13 $button13
+xsetwacom --set "Wacom Intuos Pro M Pad pad" Button 12 $button12
+xsetwacom --set "Wacom Intuos Pro M Pad pad" Button 11 $button11
+xsetwacom --set "Wacom Intuos Pro M Pad pad" Button 10 $button10
+
+xsetwacom --set "Wacom Intuos Pro M Pad pad" Button 1 $button1
+
+xsetwacom --set "Wacom Intuos Pro M Pad pad" Button 9 $button9
+xsetwacom --set "Wacom Intuos Pro M Pad pad" Button 8 $button8
+xsetwacom --set "Wacom Intuos Pro M Pad pad" Button 3 $button3
+xsetwacom --set "Wacom Intuos Pro M Pad pad" Button 2 $button2

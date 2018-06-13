@@ -1,0 +1,21 @@
+#!/bin/bash
+
+official_updates=$(checkupdates | wc -l)
+aur_updates=$(cower -u | wc -l)
+
+if [ ${official_updates} != 0 ]
+then
+	echo "===OFFICIAL REPOSITORIES==="
+	checkupdates | sed 's/^//'
+fi
+
+if [  ${official_updates} != 0 ] && [ ${aur_updates} != 0 ]
+then
+	echo -en "\n"
+fi
+
+if [ ${aur_updates} != 0 ] 
+then
+	echo -en "===ARCH USER REPOSITORY===\n"
+	cower -u | sed 's/^\:\: //'
+fi

@@ -1,0 +1,14 @@
+#!/bin/bash
+# Desktop mode
+
+# map output to HDMI1
+xrandr --output HDMI-1 --auto
+
+# disconnect laptop monitor
+xrandr --output eDP-1 --off
+
+# map wacom stylus output to HDMI1
+xsetwacom --set "Wacom Intuos Pro M Pen stylus" MapToOutput "HDMI1"
+
+# set the keyboard to United States layout
+setxkbmap us

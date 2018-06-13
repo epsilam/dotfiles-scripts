@@ -1,0 +1,23 @@
+#!/bin/bash
+# This is a script to help organize and recall notes.
+
+HELP="OPTIONS:\n\t-l\tLIST FILES IN ~/.note\n\t-o\tOPEN SPECIFIED FILE\n\t-h\tSHOW HELP"
+
+while getopts :o:lh FLAG; do
+	case $FLAG in
+		o)
+			vim ~/.note/$2.md
+			;;
+
+		l)
+			ls -1 ~/.note
+			;;
+		
+		h)
+			echo -e $HELP
+			;;	
+		\?)
+			echo -e $HELP
+			;;
+	esac
+done
