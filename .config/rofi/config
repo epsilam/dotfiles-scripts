@@ -1,0 +1,14 @@
+! REMEMBER TO TYPE 'xrdb -load ~/.Xresources' IN A TERMINAL TO LOAD THE CHANGES AFTER SAVING, OR USE THE ALIAS 'xre'
+
+! ===ROFI CONFIGS===
+
+rofi.color-enabled: true
+! State:       'bg',    'fg',    'bgalt', 'hlbg',  'hlfg'
+rofi.color-normal: #232830, #b9afb7, #232830, #454759, #dfdade
+rofi.color-urgent: #232830, #b9afb7, #232830, #454759, #dfdade
+rofi.color-active: #232830, #b9afb7, #232830, #454759, #dfdade
+
+!          'background', 'border', 'separator'
+rofi.color-window: #232830,      #232830, #232830
+
+232830
