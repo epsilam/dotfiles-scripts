@@ -1,0 +1,87 @@
+/*================================================*/
+/*VARIABLES*/
+:root {
+  /*--main-color: #141414;*/
+  --main-color: #dddddf;
+}
+
+* {
+  font-size: 13px ;
+  font-family: Fira Sans;
+}
+
+/*================================================*/
+/*TABBAR*/
+
+/*Hide the tab bar*/
+#tabbrowser-tabs { 
+	visibility: collapse !important;
+}
+
+/*================================================*/
+/*SIDEBAR*/
+
+/*Some sidebar color modifications, especially to make Tree Tabs more bearable*/
+#sidebar-header {
+    	/*background-color: rgba(40, 40, 40, 1) !important;*/
+	background-color: var(--main-color);
+	color: #aaaaaa !important;
+	border: none !important;
+	margin: -6px !important;
+  	font-size: 18px !important;
+	color: #aaaaaa;
+	display: none !important;
+}
+
+
+#sidebar-splitter {
+    	/*background-color: rgba(40, 40, 40, 1) !important;*/
+	background-color:    var(--main-color) !important;
+	border-left-color:   var(--main-color) !important;
+	border-top-color:    var(--main-color) !important;
+	border-bottom-color: var(--main-color) !important;
+	border-right-color:  var(--main-color) !important;
+	width: 2px !important;
+}
+
+/*================================================*/
+/*URLBAR & NAVBAR*/
+
+/*Make the margins of the url bar slightly smaller*/
+#urlbar-container {
+	margin: -2px !important;
+	border: none !important;
+}
+
+#nav-bar{
+	background-color: var(--main-color) !important;
+	border: none !important;
+}
+
+window:not([chromehidden~="toolbar"]) #urlbar-container > .toolbarbutton-1:-moz-any([disabled], :not([open]):not([disabled]):not(:active)) > .toolbarbutton-icon[class], #main-window:not([customizing]) #back-button[disabled] > .toolbarbutton-icon[class] {
+    background-image: none !important;
+    background-color: rgba(40, 40, 40, 0) !important;
+    box-shadow: none !important;
+    border: 0px !important;
+}
+
+#nav-bar textbox {
+    background-color: rgba(42, 42, 42, 0) !important;
+    border: none !important;
+    padding: 0px !important; 
+}
+#nav-bar textbox:hover {
+    /*background-color: rgba(75, 75, 75, 1) !important;*/
+    background-color: var(--main-color) !important;
+    border: none !important;
+    padding: 0px !important;
+}
+
+#navigator-toolbox, #main-window[sizemode="normal"] #navigator-toolbox, #main-window[sizemode="maximized"] #navigator-toolbox {
+    border-top: 0px !important;
+    border-left: 0px !important;
+    border-right: 0px !important;
+    border-bottom: 0px !important;
+    box-shadow: none !important;
+    background-color: rgba(0, 0, 0, 0) !important;
+}
